@@ -65,7 +65,7 @@
   var radiusLoc             = null;
   var googleAPIkey          = getGoogleAPIkey();
   var googleAPIurl          = "https://www.googleapis.com/fusiontables/v1/query";
-  var APIurl                = "https://www.googleapis.com/fusiontables/v1/query";
+  var APIurl                = "http://localhost/SchoolProfile/dataservice.asmx";
   var arrayforautocomplete =[];
   var allschoolsdataHome = null;
   var allschoolsdata  = null;
@@ -2865,7 +2865,8 @@ function encodeQuery(q,sf) {
   var url = [googleAPIurl];
   url.push('?sql=' + encodedQuery);
   url.push('&key='+ googleAPIkey);
-  url.push('&callback=?');
+  //url.push('&callback=?');
+  console.log(url.join(''));
   $.ajax({
     url: url.join(''),
     dataType: "jsonp",
