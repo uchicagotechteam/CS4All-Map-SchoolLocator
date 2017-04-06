@@ -364,7 +364,6 @@ function encodeQueryPhil(q,sf) {
   var url = [APIurl];
   url.push('/' + encodedQuery);
   url.push('?callback=?');
-  //console.log(url.join(''));
   $.ajax({
     url: url.join(''),
     dataType: "jsonp",
