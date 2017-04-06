@@ -2865,7 +2865,8 @@ function encodeQuery(q,sf) {
   var url = [googleAPIurl];
   url.push('?sql=' + encodedQuery);
   url.push('&key='+ googleAPIkey);
-  url.push('&callback=?');
+  //url.push('&callback=?');
+  console.log(url.join(''));
   $.ajax({
     url: url.join(''),
     dataType: "jsonp",
