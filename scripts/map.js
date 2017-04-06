@@ -251,7 +251,7 @@ function getGoogleAPIkey() {
   if(pageurl.indexOf("file:///") >=0) {
     return ("AIzaSyDBgH1Z_xKIjf1FVwvexUWfW-2FEhUjvF8"); //Local
   }else{
-    return ("AIzaSyDPyV9JDVE0rLOHBiN4npwdhsm53GBiMuk"); //Production
+    return ("AIzaSyDBgH1Z_xKIjf1FVwvexUWfW-2FEhUjvF8"); //Production
   }
 }
 
