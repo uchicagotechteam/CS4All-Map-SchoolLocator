@@ -251,7 +251,7 @@ function getGoogleAPIkey() {
   if(pageurl.indexOf("file:///") >=0) {
     return ("AIzaSyDBgH1Z_xKIjf1FVwvexUWfW-2FEhUjvF8"); //Local
   }else{
-    return ("AIzaSyDPyV9JDVE0rLOHBiN4npwdhsm53GBiMuk"); //Production
+    return ("AIzaSyDBgH1Z_xKIjf1FVwvexUWfW-2FEhUjvF8"); //Production
   }
 }
 
@@ -364,7 +364,6 @@ function encodeQueryPhil(q,sf) {
   var url = [APIurl];
   url.push('/' + encodedQuery);
   url.push('?callback=?');
-  //console.log(url.join(''));
   $.ajax({
     url: url.join(''),
     dataType: "jsonp",
@@ -2865,7 +2864,8 @@ function encodeQuery(q,sf) {
   var url = [googleAPIurl];
   url.push('?sql=' + encodedQuery);
   url.push('&key='+ googleAPIkey);
-  url.push('&callback=?');
+  //url.push('&callback=?');
+  console.log(url.join(''));
   $.ajax({
     url: url.join(''),
     dataType: "jsonp",
