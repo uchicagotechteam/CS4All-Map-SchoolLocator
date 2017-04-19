@@ -26,6 +26,7 @@
   var UScongTableId         = "1xaQnriJ9YuF9wqj_lnk_OPVeOnYb4NEYMt-b71WO" ;  //  2016
   var WardsTableId          = "1vKuFogOwwJ2YdXOVHLxbqy6Uc7ILpIbRePGK2GoD" ;  //  2016
   var TiersTableId          = "15h06grWef2iXU8i-2PtXoy_-DnSb5EglVA7ImMNt" ;  //  2016 // new owner
+  var EnrollmentTableId     = "1xCAmR2vmQnv96t_vtaGxisEd7hhQwC4BQTKvSIAP" ;  // currently undated
 
 
 
@@ -42,6 +43,7 @@
   var ILhouse ;
   var ILsenate ;
   var UScong ;
+  var Enrollment ;
   var transitLayer ;
   var bikeLayer ;
 
@@ -98,6 +100,7 @@ function initializeMap() {
    ILhouse               = new google.maps.FusionTablesLayer(ILhouseTableId);
    ILsenate              = new google.maps.FusionTablesLayer(ILsenateTableId);
    UScong                = new google.maps.FusionTablesLayer(UScongTableId);
+   Enrollment            = new google.maps.FusionTablesLayer(EnrollmentTableId);
    transitLayer          = new google.maps.TransitLayer();
    bikeLayer             = new google.maps.BicyclingLayer();
   //$.getJSON('http://jsonip.com/?callback=?', function(r){ console.log(r.ip); });
@@ -2404,6 +2407,7 @@ function clearMapElements() {
   ILhouse.setMap(null);
   ILsenate.setMap(null);
   UScong.setMap(null);
+  Enrollment.setMap(null);
   transitLayer.setMap(null);
   bikeLayer.setMap(null);
  // $('#abType4').attr('checked', 'checked'); //off
@@ -2483,6 +2487,7 @@ function toggleBoundary(closeslideout) {
   ILhouse.setMap(null);
   ILsenate.setMap(null);
   UScong.setMap(null);
+  Enrollment.setMap(null);
   transitLayer.setMap(null);
   bikeLayer.setMap(null);
   deleteNetworkOverlays(); //remove numbered network markers
@@ -2513,6 +2518,10 @@ function toggleBoundary(closeslideout) {
   if ($("#abType3").is(':checked')) {
     HSattendance.setMap(map);
     tclick = "High School Attendance";
+  }
+  if ($("#abType19").is(':checked')) {
+     Enrollment.setMap(map);
+     tclick = "Course Enrollment"
   }
   if ($("#abType5").is(':checked')) {
     queryForNetworkCenters(); // this queries and displays the numbered network markers on the map
