@@ -59,7 +59,7 @@
 
     <link href="scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css" media="all" rel="stylesheet"  />
     <link href="scripts/font-awesome-4.3.0/css/font-awesome.min.css" media="all" rel="stylesheet" >
-    <link href="styles/map.css?v=2.97" media="all" rel="stylesheet"  />
+    <link href="styles/map.css" media="all" rel="stylesheet"  />
 
     <script>
       $(document).ready(function () {
@@ -1179,15 +1179,24 @@
 
         <button id="btnAdvancedSearch" type="button"
                 class="btnAdvancedSearch pull-right btnXS markerhelp2"
-                data-toggle="tooltip" title="Overlays">
+                data-toggle="tooltip" title="Filter">
           <span class="fa-stack fa-2x">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-align-justify fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-filter fa-stack-1x fa-inverse"></i>
             <!-- <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i> -->
             <!-- <i class="fa fa-check-square-o fa-stack-1x fa-inverse"></i> -->
           </span>
         </button>
 
+<!--       <button id="btnFilter" type="button"
+              class="btnFilter pull-right btnXS markerhelp2"
+              data-toggle="tooltip" title="Filter">
+        <span class="fa-stack fa-2x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-filter fa-stack-1x fa-inverse"></i>
+        </span>
+      </button>
+ -->
 		    <button id="btnFindMe" type="button" onClick="findMe(); return false;"
                 class="btnFindMe pull-right  btnXS markerhelp2"
                 data-toggle="tooltip" title="Find Schools Around Me" >
@@ -1707,7 +1716,7 @@
           </button>
           <div class="row backgroundfillwhite">
             <div class="col-xs-12">
-              <h2 style="color:#36C; padding-bottom:20px;padding-right:40px;">Overlays</h2>
+              <h2 style="color:#36C; padding-bottom:20px;padding-right:40px;">Filters</h2>
 
               <div id="accordion" class="panel-group refineDropdown" style="margin-bottom:0;" role="tablist"
                    aria-multiselectable="true" >

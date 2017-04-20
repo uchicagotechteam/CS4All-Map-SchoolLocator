@@ -1,6 +1,8 @@
 @charset 'UTF-8';
 
-body, html { height: 100%; overflow-x:hidden; /*background-color: #FFF;*/ }
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600i,700,800');
+
+body, html { height: 100%; overflow-x:hidden; font-family: 'Open Sans', sans-serif !important;/*background-color: #FFF;*/ }
 :focus, :active, a:focus, a:active, .btn:focus, .btn:active { outline: 0; text-decoration: none; }
 
 /*.ui-autocomplete    { max-height:100% !important; left:65px !important; max-width:400px !important; }*/
@@ -189,6 +191,7 @@ button.compareHeart:active {background-color: transparent;
 .btnResetMap,
 .btnAdvancedSearch,
 .btnHelp,
+.btnFilter,
 .btnShowButtons,
 .btnZoomOut,
 .btnZoomIn,
@@ -218,7 +221,8 @@ button.compareHeart:active {background-color: transparent;
 .btnShowButtons:focus, .btnShowButtons:active, .btnShowButtons:hover,
 .btnZoomOut:focus, .btnZoomOut:active, .btnZoomOut:hover,
 .btnZoomIn:focus, .btnZoomIn:active, .btnZoomIn:hover,
-.btnCompare:focus, .btnCompare:active, .btnCompare:hover
+.btnCompare:focus, .btnCompare:active, .btnCompare:hover,
+.btnFilter:focus, .btnFilter:active, .btnFilter:hover
     {
     color:#36e;
     }

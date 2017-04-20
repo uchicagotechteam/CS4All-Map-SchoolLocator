@@ -37,6 +37,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600i,700,800');
+
 .animated {
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
@@ -387,7 +390,7 @@ div.hopscotch-bubble .hopscotch-bubble-container {
   /* to fix text flickering */
 }
 div.hopscotch-bubble .hopscotch-content {
-  font-family: Helvetica, Arial;
+  font-family: "Open Sans" !important;
   font-weight: normal;
   line-height: 17px;
   margin: -5px 0 11px;
