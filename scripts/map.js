@@ -27,7 +27,7 @@
   var WardsTableId          = "1vKuFogOwwJ2YdXOVHLxbqy6Uc7ILpIbRePGK2GoD" ;  //  2016
   var TiersTableId          = "15h06grWef2iXU8i-2PtXoy_-DnSb5EglVA7ImMNt" ;  //  2016 // new owner
   var EnrollmentTableId     = "1xCAmR2vmQnv96t_vtaGxisEd7hhQwC4BQTKvSIAP" ;  // currently undated
-
+  var DemographicTableId    = "11RxbeD369BYwHggDQ855fcLWZovEMUG_saav_R2n";
 
 
   var SafePassage ;
@@ -101,6 +101,7 @@ function initializeMap() {
    ILsenate              = new google.maps.FusionTablesLayer(ILsenateTableId);
    UScong                = new google.maps.FusionTablesLayer(UScongTableId);
    Enrollment            = new google.maps.FusionTablesLayer(EnrollmentTableId);
+   Demographic           = new google.maps.FusionTablesLayer(DemographicTableId);
    transitLayer          = new google.maps.TransitLayer();
    bikeLayer             = new google.maps.BicyclingLayer();
   //$.getJSON('http://jsonip.com/?callback=?', function(r){ console.log(r.ip); });
