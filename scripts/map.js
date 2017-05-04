@@ -1538,11 +1538,11 @@ function populateDetailDiv(id, name, address, phone, type, classif, gradesb, gra
 
   contents += "</div><div style='padding-bottom: 5px;'>"
 
+  // added cps.edu to the "more info" link since we are currently running on github
   contents += "<a class='btnDetailPanel btn btn-xs'  style='background-color:" + headcolor +
-    "' href='/Schools/Pages/school.aspx?SchoolID=" + id +
+    "' href='http://cps.edu/Schools/Pages/school.aspx?SchoolID=" + id +
     "' target='_blank' onclick='_trackClickEventWithGA(&quot;Click&quot;,&quot;School Profile&quot; ,&quot;"+ name +"&quot;);' >More Info</a>"
 
-  // added cps.edu to the "more info" link since we are currently running on github
   contents +="<a class='btnDetailPanel btn btn-xs'  style='background-color:" + headcolor +
   "' href='http://cps.edu/Schools/Pages/school.aspx?SchoolID=" + id +
   "#admissions' target='_blank' onclick='_trackClickEventWithGA(&quot;Click&quot;,&quot;Enroll&quot; ,&quot;"+ name+"&quot;);' >Enroll</a>";
