@@ -11,7 +11,7 @@
 
   // 2016-17 School Data and Ratings merged with 2016 Comparison Data
 
-  var fusionTableId         = "1vLkJOXC4YSlzRyNCoEzJMZJkvykTYd1ohPz2rf8f" ;  //SchoolDataMerged_March2017 // new owner
+  var fusionTableId         = "1zqJYI9P45i_UVVY7VjVp_VsHW_bv_-JxlF59VBKW" ;  //SchoolDataMerged_March2017 // new owner
   var LSCdistrictsTableId   = "12DTXu4VYBd7mW-2rBPlClAwXNMMuwnHSvSKRbsZe" ;  // LSC boundaries 2016
   var NetworksTableId       = "1pPqntpZutIHOGjrmgtQBmewcRPS9ylKB2UE6CsE" ;
   var CommunityTableId      = "1uhe1AW1OkXnOUeG8GJHjv4HjlSQD860pRHI-iws" ;
