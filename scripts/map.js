@@ -555,7 +555,7 @@ function searchfromurl() {
           searchtype = "url";
         }
         // whereClause = filterSchools();
-        var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, Grades, Boundary, Uniqueid,"+
+        var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
         " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
         " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
         " FROM " + fusionTableId + "   WHERE ID IN (" + schoollist + ")"; // + whereClause;
@@ -666,7 +666,7 @@ function filteredSearch() {
 // single school search
 function schoolSearch(theInput) {
   searchtype = "school";
-  var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, Grades, Boundary, Uniqueid,"+
+  var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                     " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                     " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
                     " FROM " + fusionTableId + " WHERE School = '" + theInput + "'";
@@ -685,7 +685,7 @@ function zipcodeSearch(theInput) {
   searchtype = "zip";
   zipcodeboundary = theInput;
   var whereClause = filterSchools();
-  var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, Grades, Boundary, Uniqueid,"+
+  var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                     " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                     " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
                     " FROM " + fusionTableId + " WHERE Zip = '" + theInput + "'" + whereClause;
@@ -731,7 +731,7 @@ function addressSearch(theAddress) {
         }
         whereClause += " AND ST_INTERSECTS('Polygon', CIRCLE(LATLNG"+results[0].geometry.location.toString() + "," + .00001 + "))";
         whereClause += " ORDER BY 'School'";
-        var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, Grades, Boundary, Uniqueid,"+
+        var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                           " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                           " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
                           " FROM " + fusionTableId + whereClause;
@@ -781,7 +781,7 @@ function radiusSearch() {
     //whereClause += " AND ST_INTERSECTS('Lat', CIRCLE(LATLNG" +  addrMarker.position.toString() + "," + searchRadius + "))";
     whereClause += " AND ST_INTERSECTS('Lat', CIRCLE(LATLNG" +  radiusLoc.toString() + "," + searchRadius + "))";
     whereClause += " ORDER BY 'School'";
-    var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, Grades, Boundary, Uniqueid,"+
+    var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                           " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                           " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
                           " FROM " + fusionTableId + " WHERE Lat not equal to '' " + whereClause ;
@@ -828,13 +828,13 @@ function advancedsearch() {
   whereClause = filterSchools();
   if (markersArray.length > 0) {
     // ECP and URL searches - filter through list of schools
-    var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, Grades, Boundary, Uniqueid,"+
+    var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                             " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                             " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
                             " FROM " + fusionTableId + " WHERE ID IN (" + schoollist + ")" + whereClause;
   } else {
     // All other searches - filter all schools
-    var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, Grades, Boundary, Uniqueid,"+
+    var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                             " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                             " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
                             " FROM " + fusionTableId + " WHERE ID NOT EQUAL TO '' " + whereClause;
@@ -1511,22 +1511,22 @@ function populateDetailDiv(id, name, address, phone, type, classif, gradesb, gra
   // "" if no boundary
   //
   if(gradesb !== "") {
-    contents += " <b>Boundary Grades Served: </b>";
+    //contents += " <b>Boundary Grades Served: </b>";
     if((mk===true && dupe===true) && (searchtype!=="address")) {// from marker click - show multiple boundaries message
       contents += "Mulitple boundaries found. Click on boundaries to view grades served.<br>";
     }else{
       //contents += gradesb + "<br>";
       if (gradesb.indexOf("_") != -1) {
-        contents += gradesb.substring(1) + "<br>"; //if the ft has _ before the number
+        //contents += gradesb.substring(1) + "<br>"; //if the ft has _ before the number
       } else {
-        contents += gradesb + "<br>";
+        //contents += gradesb + "<br>";
       }
 
     }
 
-  }else{
-    contents += " <b>Boundary Grades Served: </b>No Boundary<br>"
-  }
+}//else{
+    //contents += " <b>Boundary Grades Served: </b>No Boundary<br>"
+  //}
   if(grades !== "") {
     if (grades.indexOf("_") != -1) {
       contents += " <b>Grades Served: </b>" + grades.substring(1) + "<br>"
