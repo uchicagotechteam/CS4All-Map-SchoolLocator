@@ -575,7 +575,8 @@ function searchInputField() {
   clearMapFilters();
 
   //school names are uppercase
-  var theInput = $.trim( $("#autocomplete").val().toUpperCase() );
+  var unalteredInput = $.trim( $("#autocomplete").val());
+  var theInput = unalteredInput.toUpperCase();
 
   if(theInput != "") {
     // check if the value is found in the autocomplete array
@@ -594,7 +595,6 @@ function searchInputField() {
 
 
     } else { //  value is not in the array
-
       // console.log("input is not in the autocomplete: " + theInput)
       // starts with a number?  // address search?
       if(/^\d.*/.test(theInput)) {
@@ -614,10 +614,14 @@ function searchInputField() {
 
       } else {
         // doesn't start with a number
-        // treat it like a radius search
-        searchtype = "radius";
-        addrFromInputField(theInput);
+        // Let's try searching by courses!
+        _trackClickEventWithGA("Search", "Course (SubjectName)", theInput);
+        //console.log('called courseSearch!');
+        courseSearch(unalteredInput);
         return;
+        //searchtype = "radius";
+        //addrFromInputField(theInput);
+        //return;
       }
 
     }
@@ -664,12 +668,15 @@ function filteredSearch() {
 
 
 // single school search
-function schoolSearch(theInput) {
+function schoolSearch(theInput, query) {
   searchtype = "school";
-  var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
-                    " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
-                    " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
-                    " FROM " + fusionTableId + " WHERE School = '" + theInput + "'";
+  if (!query) {
+      query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
+                        " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
+                        " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
+                        " FROM " + fusionTableId + " WHERE School = '" + theInput + "'";
+  }
+
   encodeQuery(query, resultListBuilder);
 }
 
@@ -1643,7 +1650,19 @@ function populateDetailDiv(id, name, address, phone, type, classif, gradesb, gra
  //$("#resultListDetail"+uid).html( contents );
 }
 
+function showResults(data) {
+    alert(JSON.stringify(data));
+}
 
+function courseSearch(subjectName) {
+    console.log('subject:', subjectName);
+    var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
+                      " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
+                      " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College FROM " +
+                       fusionTableId + " WHERE SubjectName LIKE '%" + subjectName + "%'";
+    console.log('courseSearch activated!');
+    schoolSearch(subjectName, query);
+}
 
 function setPerformanceRatingData() {
 
