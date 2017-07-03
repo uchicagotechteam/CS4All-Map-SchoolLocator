@@ -69,6 +69,7 @@
   var googleAPIurl          = "https://www.googleapis.com/fusiontables/v1/query";
   var APIurl                = "http://localhost/SchoolProfile/dataservice.asmx";
   var arrayforautocomplete =[];
+  var available_courses = new Set([]);
   var allschoolsdataHome = null;
   var allschoolsdata  = null;
   var homeD = null;
@@ -356,7 +357,7 @@ function clearMapFilters() {
 // Runs after the map is initialized
 // Populate the autocomplete array and the multiBoundaryArray
 function queryForAutocomplete(){
- var query = "SELECT School, Zip, Classification, ProgramType, ID FROM " + fusionTableId ;
+ var query = "SELECT School, Zip, Classification, ProgramType, ID, SubjectName FROM " + fusionTableId ;
  encodeQuery(query, createAutocompleteArray);
 }
 
@@ -427,6 +428,10 @@ function createAutocompleteArray(d) {
       var sname   = (ulist[i][0]);
       var szipp   = (ulist[i][1]);
       var ssid    = (ulist[i][4]);
+      var scourses = ulist[i][5].split(',');
+      for (var j = 0; j < scourses.length; j++) {
+          available_courses.add(scourses[j]);
+      }
       //var sclas   = (ulist[i][2]);
       //var sprog   = replacePipes(ulist[i][3]);
 
@@ -444,7 +449,7 @@ function createAutocompleteArray(d) {
   multiBoundaryArray = return_duplicates(multiBoundaryArrayHolder);
   //console.log(multiBoundaryArray);
 
-  arrayforautocomplete = sort_and_unique(arrayforautocompleteHolder);
+  arrayforautocomplete = sort_and_unique(arrayforautocompleteHolder.concat(Array.from(available_courses)));
 
   initAutocomplete();
   searchfromurl();
@@ -588,9 +593,14 @@ function searchInputField() {
         zipcodeSearch(theInput);
         return;
       } else {
-        _trackClickEventWithGA("Search", "School Name", theInput);
-        schoolSearch(theInput)
-        return;
+        /*if (available_courses.has(theInput)) {
+            _trackClickEventWithGA("Search", "Course (SubjectName)", theInput);
+            courseSearch(theInput);
+        } else { */
+            _trackClickEventWithGA("Search", "School Name", theInput);
+            schoolSearch(theInput)
+            return;
+        //}
       }
 
 
@@ -992,7 +1002,7 @@ function resultListBuilder(d) {
       //var sadd = rows[i][3];
       var stype = rows[i][5];
       //var suid = rows[i][13];
-      var sgrad = rows[i][7] + "*";
+      var sgrad = rows[i][8] + "*";
       if (sgrad == "*") {
         sgrad = rows[i][8];
       }
