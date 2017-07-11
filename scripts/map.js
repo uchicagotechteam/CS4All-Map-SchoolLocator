@@ -430,7 +430,7 @@ function createAutocompleteArray(d) {
       var ssid    = (ulist[i][4]);
       var scourses = ulist[i][5].split(',');
       for (var j = 0; j < scourses.length; j++) {
-          available_courses.add(scourses[j].match(/\S+/g).join(' '));
+          available_courses.add(scourses[j].replace('-', ' ').match(/\S+/g).join(' '));
       }
       //var sclas   = (ulist[i][2]);
       //var sprog   = replacePipes(ulist[i][3]);
