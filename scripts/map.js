@@ -430,7 +430,7 @@ function createAutocompleteArray(d) {
       var ssid    = (ulist[i][4]);
       var scourses = ulist[i][5].split(',');
       for (var j = 0; j < scourses.length; j++) {
-          available_courses.add(scourses[j]);
+          available_courses.add(scourses[j].match(/\S+/g).join(' '));
       }
       //var sclas   = (ulist[i][2]);
       //var sprog   = replacePipes(ulist[i][3]);
@@ -678,13 +678,15 @@ function filteredSearch() {
 
 
 // single school search
-function schoolSearch(theInput, query) {
-  searchtype = "school";
+function schoolSearch(theInput, query, inputSearchType) {
   if (!query) {
+      searchtype = "school";
       query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                         " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                         " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College "+
                         " FROM " + fusionTableId + " WHERE School = '" + theInput + "'";
+  } else {
+      searchtype = inputSearchType;
   }
 
   encodeQuery(query, resultListBuilder);
@@ -1150,7 +1152,13 @@ function resultListBuilder(d) {
        }else{
         resultcounthtml += '';
       }
-    } else {
+  } else if (searchtype === "course"){
+      if (numRows>1) {
+       resultcounthtml += '<div class="col-xs-10" style="padding-right:3px; padding-left:10px;"><h4>' + addCommas(nlength) + ' ' + name + w + r +'</h4></div>';
+      }else{
+       resultcounthtml += '';
+     }
+  } else {
       resultcounthtml += ""+
       '<div class="col-xs-10" style="padding-right:3px; padding-left:10px;"><h4>' + addCommas(nlength) + ' '  + name + w + r +'</h4>'+ffd+'</div>';
     }
@@ -1665,13 +1673,11 @@ function showResults(data) {
 }
 
 function courseSearch(subjectName) {
-    console.log('subject:', subjectName);
     var query = "SELECT ID, School, Address, City, Phone, Type, Classification, BoundaryGrades, GradesLong, Boundary, Uniqueid,"+
                       " Zip, Marker, Typenum, ProgramType, Lat, Long, Rating, "+
                       " Count, Growth, Attainment, Culture, Graduation, Mobility, Dress, Reading, Math, ACT, ADA, College FROM " +
                        fusionTableId + " WHERE SubjectName LIKE '%" + subjectName + "%'";
-    console.log('courseSearch activated!');
-    schoolSearch(subjectName, query);
+    schoolSearch(subjectName, query, "course");
 }
 
 function setPerformanceRatingData() {
